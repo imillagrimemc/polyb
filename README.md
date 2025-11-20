@@ -3,7 +3,7 @@
 **PolyB** — это модульная система интеграции CRM и оркестрации звонков, построенная поверх шины сообщений **Polybus**.
 Проект состоит из двух основных сервисов:
 
-* **CRM Connector** — взаимодействует с EspoCRM (создание и поиск контактов, лидов).
+* **CRM Connector** — взаимодействует с CRM (создание и поиск контактов, лидов).
 * **Call Orchestrator** — получает данные из CRM и инициирует исходящий звонок через внешний VoIP-сервис.
 
 Проект легко расширяется, так как каждый компонент — отдельный сервис Polybus.
@@ -15,8 +15,8 @@
 ```
 PolyB/
 │
-├── crm_connector.py      # Сервис интеграции c EspoCRM
-├── api_client.py         # Низкоуровневый клиент EspoCRM API
+├── crm_connector.py      # Сервис интеграции c CRM
+├── api_client.py         # Низкоуровневый клиент CRM API
 └── call_orchestrator.py  # Оркестратор звонков
 ```
 
@@ -61,7 +61,7 @@ PolyB/
    push_to_crm
         |
         v
-[ CRM Connector ] ----> EspoCRM
+[ CRM Connector ] ----> CRM
         |
         v
    start_call
@@ -168,12 +168,12 @@ Content-Type: application/json
 
 ---
 
-## ⚙️ Настройка интеграции с EspoCRM
+## ⚙️ Настройка интеграции с CRM
 
-В `EspoCrmClient()` задаются:
+В `CrmClient()` задаются:
 
 ```python
-EspoAPI('http://192.168.1.100:8080', 'API_KEY')
+API('http://192.168.1.100:8080', 'API_KEY')
 ```
 
 Можно вынести в `.env` или config.json — могу добавить по запросу.
@@ -185,7 +185,7 @@ EspoAPI('http://192.168.1.100:8080', 'API_KEY')
 * **Polybus** — внутренняя сервисная шина.
 * **Python 3.10+**
 * **Requests** — HTTP клиент.
-* **EspoCRM API**
+* **CRM API**
 * **REST-интеграция с телеком-сервером**
 
 ---
